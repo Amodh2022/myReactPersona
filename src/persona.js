@@ -1,23 +1,24 @@
-// PersonaComponent.js
 import React, { useEffect } from 'react';
 import Persona from 'persona';
-import { BrowserRouter as Router, useParams } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
 
 const PersonaComponent = () => {
-  const { userId } = useParams();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const userId = queryParams.get('userId');
+
   useEffect(() => {
     const client = new Persona.Client({
       templateId: "itmpl_oFwr5vDFxPnJVnpKmXpgxY5x",
       environment: "sandbox",
       onReady: () => client.open(),
       onComplete: ({ inquiryId, status, fields }) => {
-        console.log('User ID:', userId);
-        // Redirect to Google.com on completion
-        if(status=="completed"){
+        console.log(userId)
 
+        if (status === "completed") {
+          // Do something when the Persona process is completed
+          window.location.href = 'https://www.google.com';
         }
-        window.location.href = 'https://www.google.com';
       },
       onCancel: ({ inquiryId, sessionToken }) => console.log('onCancel'),
       onError: (error) => console.log(error),
@@ -27,7 +28,7 @@ const PersonaComponent = () => {
     return () => {
       // Clean up if needed
     };
-  }, []); 
+  }, [userId]); // Make sure to include userId in the dependencies array
 
   return (
     <div>
