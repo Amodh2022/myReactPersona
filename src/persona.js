@@ -1,6 +1,6 @@
 // PersonaComponent.js
 import React, { useEffect } from 'react';
-import Persona from 'persona';
+import Persona from '../node_modules/persona';
 
 const PersonaComponent = () => {
   useEffect(() => {
