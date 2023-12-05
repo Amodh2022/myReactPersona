@@ -6,7 +6,12 @@ import { BrowserRouter as Router, useParams } from 'react-router-dom';
 
 const PersonaComponent = () => {
   const { userId } = useParams();
+
   useEffect(() => {
+  
+    const urlParams=new URLSearchParams(window.location.search);
+    const param1=urlParams.get('userId');
+    console.log(param1);
     const client = new Persona.Client({
       templateId: "itmpl_oFwr5vDFxPnJVnpKmXpgxY5x",
       environment: "sandbox",
