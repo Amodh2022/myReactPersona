@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import Persona from 'persona';
 import { BrowserRouter as Router, useParams } from 'react-router-dom';
+import { callApi } from './api'; 
 
 
 const PersonaComponent = () => {
@@ -20,7 +21,7 @@ const PersonaComponent = () => {
         console.log(userId);
         
         if(status=="completed"){
-
+           callApi(inquiryId, param1);
         }
         window.location.href = 'https://www.google.com';
       },
