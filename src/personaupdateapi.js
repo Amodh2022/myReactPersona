@@ -22,7 +22,7 @@ export const callApi = async (personaEnquiryId, userId) => {
     }
 
     const data = await response.json();
-    print(data)
+    console.log(data)
   } catch (error) {
     console.error("API error:", error);
     throw Error("Error In Catch Block");
