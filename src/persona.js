@@ -28,7 +28,10 @@ const PersonaComponent = () => {
           }
         }
       },
-      onCancel: ({ inquiryId, sessionToken }) =>  window.location.href = previousLink,
+      onCancel: ({ inquiryId, sessionToken }) => {
+        const previousLink = document.referrer || '/';
+          window.location.href = previousLink;
+      },
       onError: (error) => console.log(error),
     });
 
