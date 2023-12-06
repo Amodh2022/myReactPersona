@@ -22,7 +22,7 @@ const PersonaComponent = () => {
           const previousLink = document.referrer || '/';
           window.location.href = previousLink;
 
-          // Close the current tab
+          
           if (window.opener) {
             window.close();
           }
@@ -31,6 +31,9 @@ const PersonaComponent = () => {
       onCancel: ({ inquiryId, sessionToken }) => {
         const previousLink = document.referrer || '/';
           window.location.href = previousLink;
+          if (window.opener) {
+            window.close();
+          }
       },
       onError: (error) => console.log(error),
     });
