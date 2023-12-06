@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Persona from 'persona';
 import { callApi } from './personaupdateapi'; 
 import { decryptUserId } from './decrypt'; // Replace with the actual path
-
+import CryptoJS from 'crypto-js';
 const PersonaComponent = () => {
 
 
@@ -12,9 +12,10 @@ const PersonaComponent = () => {
     const urlParams=new URLSearchParams(window.location.search);
     const encryptedUserId=urlParams.get('userId');
  
-    const decryptedUserId = decryptUserId(encryptedUserId, "mySecret");
+    const decryptedUserId = CryptoJS.AES.decrypt(encryptedUserId, 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=');
+    var originalText = decryptedUserId.toString(CryptoJS.enc.Utf8);
     console.log("this")
-    console.log(decryptUserId);
+    console.log(originalText);
     const client = new Persona.Client({
       templateId: "itmpl_oFwr5vDFxPnJVnpKmXpgxY5x",
       environment: "sandbox",
