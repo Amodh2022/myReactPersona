@@ -27,8 +27,8 @@ const PersonaComponent = () => {
         if (status === "completed") {
           callApi(inquiryId, decodedString);
 
-          const previousLink = document.referrer || '/';
-          window.location.href = previousLink;
+          // const previousLink = document.referrer || '/';
+          // window.location.href = previousLink;
 
           if (window.opener) {
             window.close();
