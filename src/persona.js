@@ -9,14 +9,15 @@ const PersonaComponent = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const encryptedUserId = urlParams.get('userId');
-
+    var decodedString = atob(encryptedUserId);
+   
     const client = new Persona.Client({
       templateId: "itmpl_oFwr5vDFxPnJVnpKmXpgxY5x",
       environment: "sandbox",
       onReady: () => client.open(),
       onComplete: ({ inquiryId, status, fields }) => {
         if (status === "completed") {
-          callApi(inquiryId, encryptedUserId);
+          callApi(inquiryId, decodedString);
 
           // Redirect to the previous link
           const previousLink = document.referrer || '/';
