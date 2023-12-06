@@ -18,6 +18,8 @@ const PersonaComponent = () => {
     }
 
     var decodedString = atob(encryptedUserId);
+    var splitDecoded=decodedString.split('-')
+    var afterSplit=splitDecoded[0]
    
     const client = new Persona.Client({
       templateId: "itmpl_oFwr5vDFxPnJVnpKmXpgxY5x",
@@ -25,7 +27,7 @@ const PersonaComponent = () => {
       onReady: () => client.open(),
       onComplete: ({ inquiryId, status, fields }) => {
         if (status === "completed") {
-          callApi(inquiryId, decodedString);
+          callApi(inquiryId, afterSplit);
 
           // const previousLink = document.referrer || '/';
           // window.location.href = previousLink;
