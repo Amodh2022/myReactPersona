@@ -19,9 +19,8 @@ const PersonaComponent = () => {
         if (status === "completed") {
           callApi(inquiryId, decodedString);
 
-          // Redirect to the previous link
-          // const previousLink = document.referrer || '/';
-          // window.location.href = previousLink;
+          const previousLink = document.referrer || '/';
+          window.location.href = previousLink;
 
           // Close the current tab
           if (window.opener) {
@@ -29,7 +28,7 @@ const PersonaComponent = () => {
           }
         }
       },
-      onCancel: ({ inquiryId, sessionToken }) => console.log('onCancel'),
+      onCancel: ({ inquiryId, sessionToken }) =>  window.location.href = previousLink,
       onError: (error) => console.log(error),
     });
 
