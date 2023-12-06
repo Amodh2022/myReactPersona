@@ -1,13 +1,14 @@
-
+// decryptionModule.js
 
 export async function decryptUserId(encryptedUserId, secretKey) {
     console.log(encryptedUserId);
+
     const key = await crypto.subtle.importKey(
         'raw',
         new TextEncoder().encode(secretKey),
         { name: 'HMAC', hash: 'SHA-256' },
         false,
-        ['verify']
+        ['sign']  // Add 'sign' to the list of usages
     );
 
     const data = new TextEncoder().encode(encryptedUserId);
