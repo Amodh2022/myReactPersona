@@ -9,6 +9,14 @@ const PersonaComponent = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const encryptedUserId = urlParams.get('userId');
+
+    // Check if userId is empty or null
+    if (!encryptedUserId) {
+      // Handle the case where userId is empty or null (e.g., redirect to an error page)
+      console.error('userId is missing.');
+      return;
+    }
+
     var decodedString = atob(encryptedUserId);
    
     const client = new Persona.Client({
@@ -22,7 +30,6 @@ const PersonaComponent = () => {
           const previousLink = document.referrer || '/';
           window.location.href = previousLink;
 
-          
           if (window.opener) {
             window.close();
           }
@@ -30,10 +37,11 @@ const PersonaComponent = () => {
       },
       onCancel: ({ inquiryId, sessionToken }) => {
         const previousLink = document.referrer || '/';
-          window.location.href = previousLink;
-          if (window.opener) {
-            window.close();
-          }
+        window.location.href = previousLink;
+
+        if (window.opener) {
+          window.close();
+        }
       },
       onError: (error) => console.log(error),
     });
