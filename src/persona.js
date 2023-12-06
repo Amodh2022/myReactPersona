@@ -12,7 +12,7 @@ const PersonaComponent = () => {
     const urlParams=new URLSearchParams(window.location.search);
     const encryptedUserId=urlParams.get('userId');
  
-    const decryptedUserId = decrypt(encryptedUserId, 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=');
+    const decryptedUserId = atob(encryptedUserId);
   
     console.log("this")
     console.log(decryptedUserId);
