@@ -20,8 +20,8 @@ const PersonaComponent = () => {
           callApi(inquiryId, decodedString);
 
           // Redirect to the previous link
-          const previousLink = document.referrer || '/';
-          window.location.href = previousLink;
+          // const previousLink = document.referrer || '/';
+          // window.location.href = previousLink;
 
           // Close the current tab
           if (window.opener) {
