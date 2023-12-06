@@ -12,19 +12,18 @@ const PersonaComponent = () => {
     const urlParams=new URLSearchParams(window.location.search);
     const encryptedUserId=urlParams.get('userId');
  
-    const decryptedUserId = atob(encryptedUserId);
+    // const decryptedUserId = atob(encryptedUserId);
   
     console.log("this")
-    console.log(decryptedUserId);
+  
     const client = new Persona.Client({
       templateId: "itmpl_oFwr5vDFxPnJVnpKmXpgxY5x",
       environment: "sandbox",
       onReady: () => client.open(),
       onComplete: ({ inquiryId, status, fields }) => {
-        console.log(decryptedUserId);
-        console.log(encryptedUserId);
+     
         if(status=="completed"){
-           callApi(inquiryId, decryptedUserId);
+           callApi(inquiryId, encryptedUserId);
         }
         
       },
