@@ -12,8 +12,6 @@ const PersonaComponent = () => {
     const urlParams=new URLSearchParams(window.location.search);
     const encryptedUserId=urlParams.get('userId');
     const decryptedUserId = decryptUserId(encryptedUserId,"mySecret");
-   
-    console.log(param1);
     const client = new Persona.Client({
       templateId: "itmpl_oFwr5vDFxPnJVnpKmXpgxY5x",
       environment: "sandbox",
