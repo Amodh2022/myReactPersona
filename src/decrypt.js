@@ -1,12 +1,16 @@
 import CryptoJS from 'crypto-js';
 
 export function decryptUserId(encryptedUserId, secretKey) {
-  const key = CryptoJS.enc.Utf8.parse(secretKey);
-  const bytes = CryptoJS.AES.decrypt(encryptedUserId, key, {
-    mode: CryptoJS.mode.ECB,
-    padding: CryptoJS.pad.Pkcs7,
-  });
+  try {
+    const key = CryptoJS.enc.Utf8.parse(secretKey);
+    const data = CryptoJS.enc.Utf8.parse(encryptedUserId);
 
-  const decryptedUserId = bytes.toString(CryptoJS.enc.Utf8);
-  return decryptedUserId;
+    const hmacSha256 = CryptoJS.HmacSHA256(data, key);
+    const signature = CryptoJS.enc.Hex.stringify(hmacSha256);
+
+    return signature;
+  } catch (error) {
+    console.error('Decryption error:', error);
+    return null; // Or handle the error as needed
+  }
 }

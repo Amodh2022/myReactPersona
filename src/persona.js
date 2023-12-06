@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import Persona from 'persona';
 import { callApi } from './personaupdateapi'; 
-import { decryptUserId } from './decrypt';
+import { decryptUserId } from './decrypt'; // Replace with the actual path
 
 const PersonaComponent = () => {
 
@@ -11,14 +11,17 @@ const PersonaComponent = () => {
   
     const urlParams=new URLSearchParams(window.location.search);
     const encryptedUserId=urlParams.get('userId');
-    const decryptedUserId = decryptUserId(encryptedUserId,"mySecret");
+ 
+    const decryptedUserId = decryptUserId(encryptedUserId, "mySecret");
+    console.log("this")
+    console.log(decryptUserId);
     const client = new Persona.Client({
       templateId: "itmpl_oFwr5vDFxPnJVnpKmXpgxY5x",
       environment: "sandbox",
       onReady: () => client.open(),
       onComplete: ({ inquiryId, status, fields }) => {
         console.log(decryptedUserId);
-        
+        console.log(encryptedUserId);
         if(status=="completed"){
            callApi(inquiryId, decryptedUserId);
         }
