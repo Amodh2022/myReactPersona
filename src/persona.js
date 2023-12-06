@@ -18,13 +18,9 @@ const PersonaComponent = () => {
         if (status === "completed") {
           callApi(inquiryId, encryptedUserId);
 
-          // Base64 encode the userId
-          const encodedUserId = btoa(encryptedUserId);
-console.log(encodedUserId)
-          // Redirect to the previous link with the encoded userId
+          // Redirect to the previous link
           const previousLink = document.referrer || '/';
-          const redirectUrl = `${previousLink}?userId=${encodedUserId}`;
-          window.location.href = redirectUrl;
+          window.location.href = previousLink;
 
           // Close the current tab
           if (window.opener) {
