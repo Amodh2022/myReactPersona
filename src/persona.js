@@ -23,7 +23,7 @@ const PersonaComponent = () => {
         if(status=="completed"){
            callApi(inquiryId, param1);
         }
-        window.location.href = 'https://www.google.com';
+        
       },
       onCancel: ({ inquiryId, sessionToken }) => console.log('onCancel'),
       onError: (error) => console.log(error),
@@ -31,7 +31,7 @@ const PersonaComponent = () => {
     client.open();
 
     return () => {
-      // Clean up if needed
+      
     };
   }, []); 
 
