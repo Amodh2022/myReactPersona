@@ -1,4 +1,5 @@
 async function decryptUserId(encryptedUserId, secretKey) {
+    console.log(encryptedUserId);
     const key = await crypto.subtle.importKey(
       'raw',
       new TextEncoder().encode(secretKey),
@@ -10,7 +11,7 @@ async function decryptUserId(encryptedUserId, secretKey) {
     const data = new TextEncoder().encode(encryptedUserId);
     const signature = await crypto.subtle.sign('HMAC', key, data);
   
-    // Convert the signature to a hex string
+ 
     const signatureHex = Array.from(new Uint8Array(signature))
       .map((byte) => byte.toString(16).padStart(2, '0'))
       .join('');
@@ -18,15 +19,5 @@ async function decryptUserId(encryptedUserId, secretKey) {
     return signatureHex;
   }
   
-  // Example usage:
-  const encryptedUserId = encryptedUserId; // Replace with the actual encrypted user ID
-  const secretKey = secretKey; // Replace with the actual secret key
-  
-  decryptUserId(encryptedUserId, secretKey)
-    .then((decryptedUserId) => {
-      console.log('Decrypted User ID:', decryptedUserId);
-    })
-    .catch((error) => {
-      console.error('Decryption error:', error);
-    });
+
   
