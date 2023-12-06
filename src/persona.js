@@ -30,9 +30,9 @@ const PersonaComponent = () => {
           // const previousLink = document.referrer || '/';
           // window.location.href = previousLink;
 
-          if (window.opener) {
-            window.close();
-          }
+          // if (window.opener) {
+          //   window.close();
+          // }
         }
       },
       onCancel: ({ inquiryId, sessionToken }) => {
