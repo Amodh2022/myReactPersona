@@ -18,8 +18,14 @@ const PersonaComponent = () => {
         if (status === "completed") {
           callApi(inquiryId, encryptedUserId);
 
-         
-          window.location.href = 'http://localhost:63945/#/request_to_book';
+          // Redirect to the previous link
+          const previousLink = document.referrer || '/';
+          window.location.href = previousLink;
+
+          // Close the current tab
+          if (window.opener) {
+            window.close();
+          }
         }
       },
       onCancel: ({ inquiryId, sessionToken }) => console.log('onCancel'),
