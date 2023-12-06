@@ -10,9 +10,9 @@ const PersonaComponent = () => {
   useEffect(() => {
   
     const urlParams=new URLSearchParams(window.location.search);
-    const param1=urlParams.get('userId');
+    const encryptedUserId=urlParams.get('userId');
     const decryptedUserId = decryptUserId(encryptedUserId,"mySecret");
-    setDecryptedUserId(decryptedUserId);
+   
     console.log(param1);
     const client = new Persona.Client({
       templateId: "itmpl_oFwr5vDFxPnJVnpKmXpgxY5x",
