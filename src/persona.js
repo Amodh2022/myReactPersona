@@ -2,17 +2,15 @@
 import React, { useEffect } from 'react';
 import Persona from 'persona';
 import { callApi } from './personaupdateapi'; 
-import { decrypt } from './decrypt'; // Replace with the actual path
-import CryptoJS from 'crypto-js';
+
+
 
 const PersonaComponent = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const encryptedUserId = urlParams.get('userId');
 
-    // Check if userId is empty or null
     if (!encryptedUserId) {
-      // Handle the case where userId is empty or null (e.g., redirect to an error page)
       console.error('userId is missing.');
       return;
     }
@@ -29,12 +27,12 @@ const PersonaComponent = () => {
         if (status === "completed") {
           callApi(inquiryId, afterSplit);
 
-          const previousLink = document.referrer || '/';
-          window.location.href = previousLink;
+          // const previousLink = document.referrer || '/';
+          // window.location.href = previousLink;
 
-          if (window.opener) {
-            window.close();
-          }
+          // if (window.opener) {
+          //   window.close();
+          // }
         }
       },
       onCancel: ({ inquiryId, sessionToken }) => {
@@ -49,7 +47,7 @@ const PersonaComponent = () => {
     });
 
     return () => {
-      // Cleanup code if needed
+
     };
   }, []);
 
