@@ -27,12 +27,12 @@ const PersonaComponent = () => {
         if (status === "completed") {
           callApi(inquiryId, encryptedUserId);
 
-          const previousLink = document.referrer || '/';
-          window.location.href = previousLink;
+          // const previousLink = document.referrer || '/';
+          // window.location.href = previousLink;
 
-          if (window.opener) {
-            window.close();
-          }
+          // if (window.opener) {
+          //   window.close();
+          // }
         }
       },
       onCancel: ({ inquiryId, sessionToken }) => {
