@@ -23,16 +23,16 @@ const PersonaComponent = () => {
       templateId: "itmpl_oFwr5vDFxPnJVnpKmXpgxY5x",
       environment: "sandbox",
       onReady: () => client.open(),
-      onComplete: ({ inquiryId, status, fields }) => {
+      onComplete: async({ inquiryId, status, fields }) => {
         if (status === "completed") {
-          callApi(inquiryId, encryptedUserId);
+          await callApi(inquiryId, encryptedUserId);
 
-          // const previousLink = document.referrer || '/';
-          // window.location.href = previousLink;
+          const previousLink = document.referrer || '/';
+          window.location.href = previousLink;
 
-          // if (window.opener) {
-          //   window.close();
-          // }
+          if (window.opener) {
+            window.close();
+          }
         }
       },
       onCancel: ({ inquiryId, sessionToken }) => {
