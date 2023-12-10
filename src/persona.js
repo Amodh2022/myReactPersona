@@ -15,9 +15,9 @@ const PersonaComponent = () => {
       return;
     }
 
-    var decodedString = atob(encryptedUserId);
-    var splitDecoded=decodedString.split('-')
-    var afterSplit=splitDecoded[0]
+    // var decodedString = atob(encryptedUserId);
+    // var splitDecoded=decodedString.split('-')
+    // var afterSplit=splitDecoded[0]
    
     const client = new Persona.Client({
       templateId: "itmpl_oFwr5vDFxPnJVnpKmXpgxY5x",
@@ -25,14 +25,14 @@ const PersonaComponent = () => {
       onReady: () => client.open(),
       onComplete: async({ inquiryId, status, fields }) => {
         if (status === "completed") {
-          await callApi(inquiryId, afterSplit);
+          await callApi(inquiryId, encryptedUserId);
 
-          // const previousLink = document.referrer || '/';
-          // window.location.href = previousLink;
+          const previousLink = document.referrer || '/';
+          window.location.href = previousLink;
 
-          // if (window.opener) {
-          //   window.close();
-          // }
+          if (window.opener) {
+            window.close();
+          }
         }
       },
       onCancel: ({ inquiryId, sessionToken }) => {
